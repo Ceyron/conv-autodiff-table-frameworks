@@ -43,6 +43,24 @@
       <tt>dx = conv(dy, permutedims(1, 3, 2), pad=1, flipped=true)</tt>
     </td>
   </tr>
+  <tr>
+    <td><b>JAX (uses cross-correlation)</b></td>
+    <td>x = BNC_i</td>
+    <td>w = KC_iC_o</td>
+    <td>y = BNC_o</td>
+  </tr>
+  <tr>
+    <td>1D "Same"-Padding Convolution</td>
+    <td>
+      <tt>y = lax.conv_general_dilated(x, w, (1,), ((1, 1),))</tt>
+    </td>
+    <td>
+      <tt>dw = jnp.flip(lax.conv_general_dilated(jnp.transpose(dy, (1, 0, 2)), jnp.transpose(x, (1, 0, 2)), (1,), ((1, 1),)), 2) </tt>
+    </td>
+    <td>
+      <tt>dx = lax.conv_general_dilated(dy, jnp.transpose(jnp.flip(w, 2), (1, 0, 2)), (1,), ((1, 1),))</tt>
+    </td>
+  </tr>
   </tbody>
 </table> 
 
