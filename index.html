@@ -77,7 +77,24 @@
       <tt>dx = lax.conv_general_dilated(dy, jnp.transpose(jnp.flip(w, 2), (1, 0, 2)), (1,), ((1, 1),))</tt>
     </td>
   </tr>
+  <tr>
+    <td><b>PyTorch (uses cross-correlation)</b></td>
+    <td>x = BC_iN</td>
+    <td>w = C_oC_iK</td>
+    <td>y = BC_oN</td>
   </tbody>
+  <tr>
+    <td>1D "Same"-Padding Cross-Correlation</td>
+    <td>
+      <tt>y = torch.nn.functional.conv1d(x, w, padding=1)</tt>
+    </td>
+    <td>
+      <tt>todo</tt>
+    </td>
+    <td>
+      <tt>todo</tt>
+    </td>
+  </tr>
 </table> 
 
 
