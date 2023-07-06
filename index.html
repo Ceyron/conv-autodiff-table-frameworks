@@ -15,6 +15,22 @@
 <p class="text-center">
   <a href="https://twitter.com/felix_m_koehler?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @felix_m_koehler</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
+<p class="text-center">
+  Also check out the pullback/vJp rules in more mathmatical notation <a
+  href="http://fkoehler.site/conv-autodiff-table/">fkoehler.site/conv-autodiff-table</a>.
+  However, those rules assume a one-channel to one-channel convolution of only
+  one samples (i.e., no batched convolutions). Here, we consider the general
+  convolution routines of major deep learning frameworks.
+</p>
+<p class="text-center">
+  Important: Take care that same frameworks (e.g., PyTorch) use
+  <b>cross-correlation</b> instead of <b>convolution</b>. That changes the
+  pullback rule into the filter (see link above).
+</p>
+<p class="text-center">
+  <b>Legend:</b> B = batch size, C_i = input channels, C_o = output channels,
+  K = kernel size, N = spatial size
+</p>
 
 <table class="table table-striped table-hover text-center">
   <thead>
