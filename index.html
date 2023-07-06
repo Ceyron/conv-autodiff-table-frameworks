@@ -56,7 +56,7 @@
       <tt>dw = conv(permutedims(dy, (1, 3, 2)), permutedims(x, (1, 3, 2)), pad=1, flipped=true)</tt>
     </td>
     <td>
-      <tt>dx = conv(dy, permutedims(1, 3, 2), pad=1, flipped=true)</tt>
+      <tt>dx = conv(dy, permutedims(w, (1, 3, 2)), pad=1, flipped=true)</tt>
     </td>
   </tr>
   <tr>
