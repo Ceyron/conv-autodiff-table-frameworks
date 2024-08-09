@@ -26,12 +26,20 @@ with st.sidebar:
         stride = st.slider("Stride", 1, 4, 1)
         lhs_dilation = st.slider("lhs dilation", 1, 3, 1)
         rhs_dilation = st.slider("rhs dilation", 1, 3, 1)
+        if st.toggle("Further options"):
+            feature_group_count = st.slider("Feature group count", 1, 5, 1)
+            batch_group_count = st.slider("Batch group count", 1, 5, 1)
+        else:
+            feature_group_count = 1
+            batch_group_count = 1
     else:
         left_padding = 0
         right_padding = 0
         stride = 1
         lhs_dilation = 1
         rhs_dilation = 1
+        feature_group_count = 1
+        batch_group_count = 1
 
 input_array = jax.random.normal(jax.random.PRNGKey(0), (batch_size, in_feature_size, array_size))
 kernel = jax.random.normal(jax.random.PRNGKey(1), (out_feature_size, in_feature_size, kernel_size))
@@ -43,6 +51,8 @@ conv_fun = lambda lhs: jax.lax.conv_general_dilated(
     padding=((left_padding, right_padding),),
     lhs_dilation=(lhs_dilation,),
     rhs_dilation=(rhs_dilation,),
+    feature_group_count=feature_group_count,
+    batch_group_count=batch_group_count,
 )
 filter_fun = lambda rhs: jax.lax.conv_general_dilated(
     input_array,
@@ -51,6 +61,8 @@ filter_fun = lambda rhs: jax.lax.conv_general_dilated(
     padding=((left_padding, right_padding),),
     lhs_dilation=(lhs_dilation,),
     rhs_dilation=(rhs_dilation,),
+    feature_group_count=feature_group_count,
+    batch_group_count=batch_group_count,
 )
 
 if what_to_display in ["Input", "Both"]:
